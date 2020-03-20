@@ -17,9 +17,9 @@ namespace CRUD
             Suffix = suffix;
         }
 
-        public string tostring()
+        public override string ToString()
         {
-            return "[Prefix == " + Prefix + ", Suffix = " + Suffix + ", userID = " + UserID
+            return "[Prefix = " + Prefix + ", Suffix = " + Suffix + ", userID = " + UserID
                 + "]";
         }
     }

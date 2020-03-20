@@ -68,7 +68,7 @@ namespace CRUD
                         if (entryAllowed)
                         {
                             userList.Add(new User(prefix, suffix, userID));
-                            Console.WriteLine("\n" + userList.Last().tostring() + "\n");
+                            Console.WriteLine("\n" + userList.Last().ToString() + "\n");
                         }
                     } while (!entryAllowed);
                     { }
@@ -92,7 +92,7 @@ namespace CRUD
                         if (user.getUserID() == userID)
                         {
                             count++;
-                            Console.WriteLine("\n" + userID + ": " + user.tostring() + "\n");
+                            Console.WriteLine("\n" + userID + ": " + user.ToString() + "\n");
                         }
                     }
 
@@ -125,7 +125,7 @@ namespace CRUD
                     {
                         if (user.getUserID() == userID)
                         {
-                            Console.WriteLine("\nCurrent information: " + user.tostring());
+                            Console.WriteLine("\nCurrent information: " + user.ToString());
                             Console.Write("\nPlease enter the user's new prefix: ");
                             newPref = Console.ReadLine();
                             Console.Write("Please enter the user's new suffix: ");
@@ -154,7 +154,7 @@ namespace CRUD
                                 user.setPrefix(newPref);
                                 user.setSuffix(newSuf);
                                 user.setUserID(newID);
-                                Console.WriteLine("\nUpdated information: " + user.tostring() + "\n");
+                                Console.WriteLine("\nUpdated information: " + user.ToString() + "\n");
                             }
                         }
                     }
@@ -193,7 +193,7 @@ namespace CRUD
                 {
                     for (int i = 0; i < userList.Count; i++)
                     {
-                        Console.WriteLine(userList[i].tostring());
+                        Console.WriteLine(userList[i].ToString());
                     }
 
                     if (userList.Count == 0)
