@@ -32,18 +32,7 @@ namespace CRUD
 
                 if (choice == "R" || choice == "r")
                 {
-                    Console.Write("Please enter the user's ID: ");
-                    string userID = Console.ReadLine();
-
-                    var user = users.SingleOrDefault(u => u.UserID == userID);
-                    if (user != null)
-                    {
-                        Console.WriteLine("\n" + userID + ": " + user.ToString() + "\n");
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n ***No such user*** \n");
-                    }
+                    ReadUser(users);
                 }
 
                 if (choice == "U" || choice == "u")
@@ -115,6 +104,21 @@ namespace CRUD
                 }
 
             } while (running);
+        }
+
+        private static void ReadUser(IDictionary<string, User> users)
+        {
+            Console.Write("Please enter the user's ID: ");
+            string userID = Console.ReadLine();
+
+            if (users.ContainsKey(userID))
+            {
+                Console.WriteLine("\n" + userID + ": " + users[userID] + "\n");
+            }
+            else
+            {
+                Console.WriteLine("\n ***No such user*** \n");
+            }
         }
 
         private static void CreateUser(IDictionary<string, User> users)
