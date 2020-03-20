@@ -37,44 +37,7 @@ namespace CRUD
 
                 if (choice == "U" || choice == "u")
                 {
-
-                    Console.Write("Please enter the user's ID: ");
-                    string userID = Console.ReadLine();
-
-                    string newPref;
-                    string newSuf;
-                    string newID;
-
-                    var user = users.SingleOrDefault(u => u.UserID == userID);
-                    if (user != null)
-                    {
-                        Console.WriteLine("\nCurrent information: " + user.ToString());
-                        Console.Write("\nPlease enter the user's new prefix: ");
-                        newPref = Console.ReadLine();
-                        Console.Write("Please enter the user's new suffix: ");
-                        newSuf = Console.ReadLine();
-
-                        var validID = false;
-                        do
-                        {
-                            Console.Write("Please enter the user's new ID: ");
-                            newID = Console.ReadLine();
-
-                            validID = !users.Any(u => u.UserID == newID);
-                            if (validID)
-                            {
-                                user.UserID = newID;
-                                user.Prefix = newPref;
-                                user.Suffix = newSuf;
-
-                                Console.WriteLine("\nUpdated information: " + user.ToString() + "\n");
-                            }
-                            else
-                            {
-                                Console.WriteLine("\nA user with this ID already exists, please try again.\n");
-                            }
-                        } while (!validID);
-                    }                   
+                    UpdateUser(users);
                 }
 
                 if (choice == "D" || choice == "d")
@@ -104,6 +67,18 @@ namespace CRUD
                 }
 
             } while (running);
+        }
+
+        private static void UpdateUser(Dictionary<string, User> users)
+        {
+            Console.Write("Please enter the user's ID: ");
+            string userID = Console.ReadLine();
+
+            if (users.ContainsKey(userID))
+            {
+                Console.WriteLine("\nCurrent information: " + users[userID]);
+                CreateUser(users);
+            }
         }
 
         private static void ReadUser(IDictionary<string, User> users)
