@@ -14,47 +14,40 @@ namespace CRUD
             Console.WriteLine("Welcome to you user database! \n");
             Console.WriteLine("Please choose one of these menu options: ");
 
-            string choice = "null";
-
             do
             {
-
                 Console.WriteLine("[ C - Create | R - Read | U - Update | D - Delete | P - Print | Q - Quit ]");
                 Console.Write("Input: ");
 
-                choice = Console.ReadLine();
-                Console.WriteLine();
-
-                if (choice == "C" || choice == "c")
+                switch (Console.ReadLine().ToUpper())
                 {
-                    CreateUser(users);
-                }
+                    case "C":
+                        CreateUser(users);
+                        break;
 
-                if (choice == "R" || choice == "r")
-                {
-                    ReadUser(users);
-                }
+                    case "R":
+                        ReadUser(users);
+                        break;
 
-                if (choice == "U" || choice == "u")
-                {
-                    UpdateUser(users);
-                }
+                    case "U":
+                        UpdateUser(users);
+                        break;
 
-                if (choice == "D" || choice == "d")
-                {
-                    DeleteUser(users);
-                }
+                    case "D":
+                        DeleteUser(users);
+                        break;
 
-                if (choice == "P" || choice == "p")
-                {
-                    PrintAll(users);
-                }
+                    case "P":
+                        PrintAll(users);
+                        break;
 
-                if (choice == "Q" || choice == "q")
-                {
-                    running = false;
-                }
+                    case "Q":
+                        running = false;
+                        break;
 
+                    default:
+                        break;
+                }
             } while (running);
         }
 
@@ -115,7 +108,11 @@ namespace CRUD
 
                 if (users.ContainsKey(userID))
                 {
-                    Console.WriteLine("\nA user with this ID already exists, please try again.\n");
+                    Console.WriteLine("\nA user with this ID already exists, change this ID? (Y/N)\n");
+                    if (Console.ReadLine().ToUpper() == "Y")
+                    {
+                        users.Remove(userID);
+                    }
                 }
             } while (userID == null || users.ContainsKey(userID));
 
