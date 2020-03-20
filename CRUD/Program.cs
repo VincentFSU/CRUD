@@ -47,18 +47,7 @@ namespace CRUD
 
                 if (choice == "P" || choice == "p")
                 {
-                    if (users.Any())
-                    {
-                        foreach (var user in users)
-                        {
-                            Console.WriteLine(user);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("To fill this empty table, enter 'C'.");
-                    }
-                    Console.WriteLine();
+                    PrintAll(users);
                 }
 
                 if (choice == "Q" || choice == "q")
@@ -67,6 +56,21 @@ namespace CRUD
                 }
 
             } while (running);
+        }
+
+        private static void PrintAll(Dictionary<string, User> users)
+        {
+            if (users.Any())
+            {
+                foreach (var user in users.Values.OrderBy(value => value.UserID))
+                {
+                    Console.WriteLine(user);
+                }
+            }
+            else
+            {
+                Console.WriteLine("To fill this empty table, enter 'C'.");
+            }
         }
 
         private static void UpdateUser(Dictionary<string, User> users)
