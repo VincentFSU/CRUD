@@ -6,9 +6,9 @@ namespace CRUD
 {
     public class User
     {
-        string Suffix { get; set; }
-        string Prefix { get; set; }
-        string UserID { get; set; }
+        public string Suffix { get; set; }
+        public string Prefix { get; set; }
+        public string UserID { get; set; }
 
         public User(string prefix, string suffix, string userID)
         {

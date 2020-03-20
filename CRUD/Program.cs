@@ -10,14 +10,8 @@ namespace CRUD
         {
             bool running = true;
 
-            /* LIST ASSERTS THAT EACH USER HAS A UNIQUE ID
-             * ALLOWS FOR USERS OF SAME PREFIX AND SUFFIX */
-
-            //establishes an empty list of users
             List<User> userList = new List<User>();
 
-
-            //menu
             Console.WriteLine("Welcome to you user database! \n");
             Console.WriteLine("Please choose one of these menu options: ");
 
@@ -37,44 +31,29 @@ namespace CRUD
                 //add a new user to the system
                 if (choice == "C" || choice == "c")
                 {
-                    //prompt for entering a new prefix, suffix, and userId
                     Console.Write("Please enter a prefix: ");
                     string prefix = Console.ReadLine();
                     Console.Write("Please enter a suffix: ");
                     string suffix = Console.ReadLine();
 
-                    //is a new entry allowed
-                    bool entryAllowed = true;
-
+                    var validID = false;
                     do
                     {
                         Console.Write("Please enter an ID: ");
                         string userID = Console.ReadLine();
 
-                        //is the user allowed to be entered into the database
-                        entryAllowed = true;
-
-                        //checks to see if the user id is already in use (i.e. if there are duplicates)
-                        foreach (User user in userList)
-                        {
-                            if (user.getUserID() == userID)
-                            {
-                                Console.WriteLine("\nA user with this ID already exists, please try again.\n");
-                                entryAllowed = false;
-                            }
-                        }
-
-                        //if there are no duplicates, the user is added into the database
-                        if (entryAllowed)
+                        validID = !userList.Any(user => user.UserID == userID);
+                        if (validID)
                         {
                             userList.Add(new User(prefix, suffix, userID));
                             Console.WriteLine("\n" + userList.Last().ToString() + "\n");
                         }
-                    } while (!entryAllowed);
-                    { }
+                        else
+                        {
+                            Console.WriteLine("\nA user with this ID already exists, please try again.\n");
+                        }
+                    } while (!validID);
 
-
-                }
 
                 //read information of an existing user
                 if (choice == "R" || choice == "r")
