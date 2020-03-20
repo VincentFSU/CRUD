@@ -9,8 +9,7 @@ namespace CRUD
         public static void Main()
         {
             bool running = true;
-
-            List<User> userList = new List<User>();
+            var users = new Dictionary<string, User>();
 
             Console.WriteLine("Welcome to you user database! \n");
             Console.WriteLine("Please choose one of these menu options: ");
@@ -28,29 +27,7 @@ namespace CRUD
 
                 if (choice == "C" || choice == "c")
                 {
-                    Console.Write("Please enter a prefix: ");
-                    string prefix = Console.ReadLine();
-                    Console.Write("Please enter a suffix: ");
-                    string suffix = Console.ReadLine();
-
-                    bool validID = false;
-                    do
-                    {
-                        Console.Write("Please enter an ID: ");
-                        string userID = Console.ReadLine();
-
-                        validID = !userList.Any(user => user.UserID == userID);
-                        if (validID)
-                        {
-                            var user = new User(prefix, suffix, userID);
-                            userList.Add(user);
-                            Console.WriteLine("\n" + user + "\n");
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nA user with this ID already exists, please try again.\n");
-                        }
-                    } while (!validID);
+                    CreateUser(users);
                 }
 
                 if (choice == "R" || choice == "r")
@@ -58,7 +35,7 @@ namespace CRUD
                     Console.Write("Please enter the user's ID: ");
                     string userID = Console.ReadLine();
 
-                    var user = userList.SingleOrDefault(u => u.UserID == userID);
+                    var user = users.SingleOrDefault(u => u.UserID == userID);
                     if (user != null)
                     {
                         Console.WriteLine("\n" + userID + ": " + user.ToString() + "\n");
@@ -79,7 +56,7 @@ namespace CRUD
                     string newSuf;
                     string newID;
 
-                    var user = userList.SingleOrDefault(u => u.UserID == userID);
+                    var user = users.SingleOrDefault(u => u.UserID == userID);
                     if (user != null)
                     {
                         Console.WriteLine("\nCurrent information: " + user.ToString());
@@ -94,7 +71,7 @@ namespace CRUD
                             Console.Write("Please enter the user's new ID: ");
                             newID = Console.ReadLine();
 
-                            validID = !userList.Any(u => u.UserID == newID);
+                            validID = !users.Any(u => u.UserID == newID);
                             if (validID)
                             {
                                 user.UserID = newID;
@@ -113,14 +90,14 @@ namespace CRUD
 
                 if (choice == "D" || choice == "d")
                 {
-                    DeleteUser(userList);
+                    DeleteUser(users);
                 }
 
                 if (choice == "P" || choice == "p")
                 {
-                    if (userList.Any())
+                    if (users.Any())
                     {
-                        foreach (var user in userList)
+                        foreach (var user in users)
                         {
                             Console.WriteLine(user);
                         }
@@ -140,16 +117,37 @@ namespace CRUD
             } while (running);
         }
 
-        private static void DeleteUser(List<User> userList)
+        private static void CreateUser(IDictionary<string, User> users)
+        {
+            Console.Write("Please enter a prefix: ");
+            string prefix = Console.ReadLine();
+            Console.Write("Please enter a suffix: ");
+            string suffix = Console.ReadLine();
+
+            Console.Write("Please enter an ID: ");
+            string userID = null;
+            do
+            {
+                userID = Console.ReadLine();
+
+                if (users.ContainsKey(userID))
+                {
+                    Console.WriteLine("\nA user with this ID already exists, please try again.\n");
+                }
+            } while (userID == null || users.ContainsKey(userID));
+
+            var user = new User(prefix, suffix, userID);
+            users.Add(userID, user);
+            Console.WriteLine("\n" + user + "\n");
+        }
+
+        private static void DeleteUser(IDictionary<string, User> users)
         {
             Console.Write("Please enter the user's ID: ");
             string userID = Console.ReadLine();
             Console.WriteLine();
 
-            var originalCount = userList.Count;
-            userList.RemoveAll(u => u.UserID == userID);
-
-            if (originalCount == userList.Count)
+            if(!users.Remove(userID))
             {
                 Console.WriteLine("***No such user*** \n");
             }
