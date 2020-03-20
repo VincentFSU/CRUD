@@ -17,7 +17,7 @@ namespace CRUD
             do
             {
                 Console.WriteLine("[ C - Create | R - Read | U - Update | D - Delete | P - Print | Q - Quit ]");
-                Console.Write("Input: ");
+                Console.Write("\nInput: ");
 
                 switch (Console.ReadLine().ToUpper())
                 {
@@ -108,11 +108,7 @@ namespace CRUD
 
                 if (users.ContainsKey(userID))
                 {
-                    Console.WriteLine("\nA user with this ID already exists, change this ID? (Y/N)\n");
-                    if (Console.ReadLine().ToUpper() == "Y")
-                    {
-                        users.Remove(userID);
-                    }
+                    Console.WriteLine("\nA user with this ID already exists, please try again.\n");
                 }
             } while (userID == null || users.ContainsKey(userID));
 

@@ -1,0 +1,11 @@
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\bin\Debug\netcoreapp3.0\CRUD.exe
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\bin\Debug\netcoreapp3.0\CRUD.deps.json
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\bin\Debug\netcoreapp3.0\CRUD.runtimeconfig.json
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\bin\Debug\netcoreapp3.0\CRUD.runtimeconfig.dev.json
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\bin\Debug\netcoreapp3.0\CRUD.dll
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\bin\Debug\netcoreapp3.0\CRUD.pdb
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\obj\Debug\netcoreapp3.0\CRUD.csprojAssemblyReference.cache
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\obj\Debug\netcoreapp3.0\CRUD.AssemblyInfoInputs.cache
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\obj\Debug\netcoreapp3.0\CRUD.AssemblyInfo.cs
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\obj\Debug\netcoreapp3.0\CRUD.dll
+C:\Users\Vince\Desktop\SENG 350\CRUD\CRUD\obj\Debug\netcoreapp3.0\CRUD.pdb
